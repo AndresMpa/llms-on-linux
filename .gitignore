@@ -1,5 +1,10 @@
 # Extra
 .~lock.organizer.ods#
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gzd
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
