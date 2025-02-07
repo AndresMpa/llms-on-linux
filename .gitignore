@@ -4,7 +4,15 @@
 *.fdb_latexmk
 *.fls
 *.log
-*.synctex.gzd
+*.synctex.gzdo
+*.toc
+*.out
+*.nlo
+*.lof
+*.lot
+*.blg
+*.bbl
+*.gz
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
