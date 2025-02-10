@@ -1,0 +1,122 @@
+\documentclass[12pt,letterpaper,oneside,onecolumn,openany]{book}
+%% openany evita poner página adicional por capítulo
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-tabla]{babel} %% es-tabla cambia cuadros por tablas
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx} %% gráficos
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png,.eps}
+\usepackage{subfig}
+\usepackage{float} %% PARA UBICAR FIGURAS
+%%%%%%%%%TABLAS%%%%%%%%%%%%%%%%%%%%%
+\usepackage{longtable}
+\usepackage{booktabs} 
+%\usepackage{tabls}
+%\usepackage{ctable}
+\usepackage{bigstrut}
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{rotating}
+%\usepackage{rotfloat}
+%%%% para páginas horizontales
+\usepackage{pdflscape}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[sort&compress]{natbib} % para contraer referencias de texto
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[pdftex,
+            bookmarks,
+            bookmarksnumbered=true,
+            bookmarksopen=false,
+            colorlinks,
+            citecolor=blue,
+            filecolor=blue,
+            linkcolor=blue,
+            urlcolor=blue,
+            breaklinks=true, %% para títulos largos
+            ]{hyperref}
+\usepackage[left=4cm,right=2cm,top=3cm,bottom=2cm]{geometry}
+\sloppy 
+\pagestyle{plain} %% un solo número por página
+\renewcommand{\baselinestretch}{1.0} %% interlineado de 1.0
+\parskip=3mm %% espacio entre párrafos
+\parindent=0mm %% espacio a principio de párrafo
+%%http://minisconlatex.blogspot.com.co/2011/04/como-escribir-una-tesis-con-latex.html
+%%%%%%%%%%% configuración de nomenclatura%%%%%%%%%%%%%%%%%%%%
+\usepackage[intoc]{nomencl} % Nomenclature package
+\makenomenclature
+\usepackage{ifthen}
+\renewcommand{\nomname}{Nomenclatura}
+ \RequirePackage{ifthen}
+ \renewcommand{\nomgroup}[1]
+ {%
+ 	\ifthenelse{\equal{#1}{C}}{\item[\underline{Conjuntos:}]}
+ 	{%
+ 		\ifthenelse{\equal{#1}{P}}{\item[\underline{Parámetros:}]}
+ 		{
+ 			\ifthenelse{\equal{#1}{V}}{\item[\underline{Variables:}]}{}
+ 		}
+ 	}
+ }
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \addto{\captionsspanish}{\def\chaptername{}}
+
+\usepackage{titlesec}
+\titleformat{\chapter}
+	{\fontsize{17.28pt}{0pt}\bfseries}{\thechapter}{1em}{}
+\titlespacing{\chapter}{1cm}{0pt}{30pt}
+\titleformat{\section}
+  {\normalfont\fontsize{14}{0pt}\bfseries}{\thesection}{1em}{}
+\titlespacing{\section}{0pt}{24pt}{6pt}
+\titleformat{\subsection}
+  {\normalfont\fontsize{12}{0pt}}{\thesubsection}{1em}{}
+\titlespacing{\subsection}{0pt}{24pt}{6pt}
+%%%%%%%%%%%%%%%%%%%%%%GRAFICOS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pgfgantt}
+\usepackage{tikz}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+
+\fancypagestyle{landscape}{
+    \fancyhf{} % Limpia todos los encabezados y pies de página predefinidos
+    \fancyfoot[C]{\thepage} % Número de página centrado en el pie de página
+    \renewcommand{\headrulewidth}{0pt} % Elimina la línea del encabezado
+    \renewcommand{\footrulewidth}{0pt} % Elimina la línea del pie de página
+    \fancyfoot[C]{\makebox[\textwidth][c]{\begin{sideways}\thepage\end{sideways}}} % Colocar el número de página girado en el centro del pie de página
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\familydefault}{\rmdefault}			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{Variables}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Páginas no númeradas, portadas, dedicatoria, agredecimientos, introducción
+\pagenumbering{gobble}
+\include{Chapter_0/Structure} % Presentation
+\pagenumbering{roman} %% númeración en romano
+\renewcommand{\contentsname}{Table of Contents}
+\tableofcontents
+\renewcommand{\listfigurename}{Index of Figures}
+\listoffigures
+\renewcommand{\listtablename}{Index of Tables}
+\listoftables
+%%% cuerpo principal
+\mainmatter %% cuerpo principal (la númeración es en arábigo)
+\include{Appex/Glossary}
+%\include{Appex/Nomenclature}
+\include{Chapter_1/Structure} % Introduction
+\include{Chapter_2/Structure} % State of the Art
+\include{Chapter_3/Structure} % Theorical Framework
+\include{Chapter_4/Structure} % Result & discussion 
+\include{Chapter_5/Structure} % Conclusions & Future work
+\appendix
+\mainmatter
+\include{Appex/Appendix_a}
+\include{Appex/Appendix_b}
+\bibliographystyle{apalike}
+\bibliography{Bibliography}
+\end{document}
+%% Structure reference: https://repositorio.utp.edu.co/server/api/core/bitstreams/8ba3eb1f-2fae-462f-8c66-21e2aa11d2fc/content
